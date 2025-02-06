@@ -12,9 +12,14 @@ public abstract class    BasePage {
     }
     public void enterPage(String pageUrl){
         driver.get(pageUrl);
+
+    }
+    public boolean findElement(String xpath){
+        driver.findElement(By.xpath(xpath)).isDisplayed();
+        return true;
     }
     public void clickOnElement(String xpath){
-        driver.findElement(By.id(xpath)).click();
+        driver.findElement(By.xpath(xpath)).click();
     }
     public void typeText( String xpath, String text) {
     driver.findElement(By.xpath(xpath)).sendKeys(text);
