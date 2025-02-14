@@ -1,7 +1,6 @@
 package test;
 
-import org.base.LoginPage;
-import org.junit.Assert;
+import base.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,7 +36,7 @@ public class LoginTest {
         loginPage.clickOnElement(loginButton);
     }
     @Test
-    public void testLoginNegative(){
+    public void testLoginNegative(){      
         loginPage.Test();
         loginPage.typeText(userNameXpath,userNameTextNegative);
         loginPage.typeText(passwordField, passwordNameTextNegative);
