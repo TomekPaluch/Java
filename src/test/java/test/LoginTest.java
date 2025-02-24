@@ -13,14 +13,7 @@ public class LoginTest {
     private WebDriver driver;
     private WebElement element;
     private LoginPage loginPage;
-    private String userNameXpath = "//*[@id=\"user-name\"]";
-    private String userNameText = "standard_user";
-    private String passwordField = "//*[@id=\"password\"]";
-    private String passwordFieldText = "secret_sauce";
-    private String loginButton = "//*[@id=\"login-button\"]";
-    private String userNameTextNegative="Test";
-    private String passwordNameTextNegative = "12345";
-    private String errorMessage = "//*[@id=\"login_button_container\"]/div/form/div[3]/h3";
+
 
     @BeforeEach
     public void intizializeDriver(){
@@ -29,20 +22,21 @@ public class LoginTest {
     }
 
     @Test
-    public void testLogin(){
-        loginPage.Test();
-        loginPage.typeText(userNameXpath,userNameText);
-        loginPage.typeText(passwordField, passwordFieldText);
-        loginPage.clickOnElement(loginButton);
+    public void loginWithValidCredentials(){
+        loginPage.enterPage();
+        loginPage.validLogin();
+        loginPage.validpassword();
+        loginPage.clickOnLoginButton();
+        loginPage.quitDriver();
     }
     @Test
-    public void testLoginNegative(){      
-        loginPage.Test();
-        loginPage.typeText(userNameXpath,userNameTextNegative);
-        loginPage.typeText(passwordField, passwordNameTextNegative);
-        loginPage.clickOnElement(loginButton);
-        assertTrue(loginPage.findElement(errorMessage),
-                "Message Appeared");
+    public void loginWithInvalidCredentials(){
+        loginPage.enterPage();
+        loginPage.invalidLogin();
+        loginPage.invalidPassword();
+        loginPage.clickOnLoginButton();
+        loginPage.verifyErrorMessage();
+        loginPage.quitDriver();
     }
 
 }
