@@ -1,6 +1,7 @@
 package test;
 
 import base.LoginPage;
+import commonUtilities.BrowserSetup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -9,15 +10,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class LoginTest {
-    private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
+public class LoginTest extends BrowserSetup {
     private WebDriver driver;
     private LoginPage loginPage;
 
 
     @BeforeEach
     public void intizializeDriver() {
-        driver = new ChromeDriver();
+        BrowserSetup browserSetup = new BrowserSetup();
+        driver = browserSetup.startChrome();
         loginPage = new LoginPage(driver);
     }
 
@@ -25,7 +26,7 @@ public class LoginTest {
     public void loginWithValidCredentials() {
         loginPage.enterPage();
         loginPage.validLogin();
-        loginPage.validpassword();
+        loginPage.validPassword();
         loginPage.clickOnLoginButton();
         loginPage.quitDriver();
     }
@@ -54,5 +55,10 @@ public class LoginTest {
         loginPage.verifyPasswordNameIsRequiredError();
         loginPage.quitDriver();
     }
-
+    @Test
+    public void logOut(){
+        loginPage.enterPage();
+        loginPage.validLogin();
+        loginPage.validPassword();
+    }
 }

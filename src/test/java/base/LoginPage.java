@@ -32,7 +32,7 @@ public class LoginPage extends BasePage {
         typeText(userNameXpath, userNameText);
     }
 
-    public void validpassword() {
+    public void validPassword() {
         typeText(passwordField, passwordFieldText);
     }
 
