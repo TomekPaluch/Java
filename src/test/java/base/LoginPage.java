@@ -19,7 +19,7 @@ public class LoginPage extends BasePage {
     private String errorMessage = "Epic sadface: Username and password do not match any user in this service";
     private String userNameRequired = "Epic sadface: Username is required";
     private String passwordRequired = "Epic sadface: Password is required";
-
+    private String menuDropDown = "//*[@id=\"react-burger-menu-btn\"]";
     public LoginPage(WebDriver driver) {
         super(driver);
     }
