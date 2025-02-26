@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoginPage extends BasePage {
     private WebDriver driver;
     private WebElement element;
-    private String userNameXpath = "//*[@id=\"user-name\"]";
+    private final String userNameXpath = "//*[@id=\"user-name\"]";
     private String userNameText = "standard_user";
     private String passwordField = "//*[@id=\"password\"]";
     private String passwordFieldText = "secret_sauce";
@@ -19,7 +19,6 @@ public class LoginPage extends BasePage {
     private String errorMessage = "Epic sadface: Username and password do not match any user in this service";
     private String userNameRequired = "Epic sadface: Username is required";
     private String passwordRequired = "Epic sadface: Password is required";
-    private String menuDropDown = "//*[@id=\"react-burger-menu-btn\"]";
     public LoginPage(WebDriver driver) {
         super(driver);
     }
