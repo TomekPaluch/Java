@@ -50,7 +50,7 @@ public class MainPage extends BasePage{
     }
 
     public WebElement findLeastExpensiveItem(){
-        ArrayList<WebElement> itemList = new ArrayList<WebElement>(driver.findElements(allItemsBy));
+        ArrayList<WebElement> itemList = new ArrayList<>(driver.findElements(allItemsBy));
         double minPrice = Double.MAX_VALUE;
         WebElement minPriceElement = null;
         for(WebElement item : itemList){
@@ -66,6 +66,13 @@ public class MainPage extends BasePage{
 
     public void clickOnLeastExpensiveItem() {
         findLeastExpensiveItem().findElement(By.tagName("button")).click();
+    }
+
+    public void selectAllItems(){
+        ArrayList<WebElement> itemList = new ArrayList<>(driver.findElements(allItemsBy));
+        for(WebElement item: itemList){
+            item.findElement(By.tagName("button")).click();
+        }
     }
 }
 

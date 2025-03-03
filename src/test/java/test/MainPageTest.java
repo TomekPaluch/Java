@@ -46,6 +46,15 @@ public class MainPageTest {
         mainPage.clickOnLeastExpensiveItem();
     }
 
+    @Test
+    public void selectAllItems(){
+        loginPage.enterPage();
+        loginPage.validLogin();
+        loginPage.validPassword();
+        loginPage.clickOnLoginButton();
+        mainPage.selectAllItems();
+    }
+
 
 }
 
