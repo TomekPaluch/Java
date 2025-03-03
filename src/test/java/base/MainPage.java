@@ -49,4 +49,23 @@ public class MainPage extends BasePage{
         findMostExpensiveItem().findElement(By.tagName("button")).click();
     }
 
+    public WebElement findLeastExpensiveItem(){
+        ArrayList<WebElement> itemList = new ArrayList<WebElement>(driver.findElements(allItemsBy));
+        double minPrice = Double.MAX_VALUE;
+        WebElement minPriceElement = null;
+        for(WebElement item : itemList){
+            String priceText = item.findElement(priceBy).getText();
+            double price = Double.parseDouble(priceText.substring(1));
+            if (price < minPrice){
+                minPrice = price;
+                minPriceElement = item;
+            }
+        }
+        return minPriceElement;
+    }
+
+    public void clickOnLeastExpensiveItem() {
+        findLeastExpensiveItem().findElement(By.tagName("button")).click();
+    }
 }
+

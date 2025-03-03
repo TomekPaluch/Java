@@ -28,7 +28,22 @@ public class MainPageTest {
         loginPage.validPassword();
         loginPage.clickOnLoginButton();
         assertEquals(mainPage.readTitle(), "Products");
+    }
+    @Test
+    public void selectMostExpensiveItem(){
+        loginPage.enterPage();
+        loginPage.validLogin();
+        loginPage.validPassword();
+        loginPage.clickOnLoginButton();
         mainPage.clickOnMostExpensiveItem();
+    }
+    @Test
+    public void selectLeastExpensiveItem(){
+        loginPage.enterPage();
+        loginPage.validLogin();
+        loginPage.validPassword();
+        loginPage.clickOnLoginButton();
+        mainPage.clickOnLeastExpensiveItem();
     }
 
 
