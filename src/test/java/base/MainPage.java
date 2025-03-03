@@ -2,6 +2,9 @@ package base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
 
 public class MainPage extends BasePage{
 
@@ -26,6 +29,24 @@ public class MainPage extends BasePage{
         clickOnElement(burgerMenuBy);
     }
     public void logOut(){
-        clickOnElement(logoutButtonBy);
+        clickOnElement(logoutButtonBy) ;
     }
+    public WebElement findMostExpensiveItem(){
+        ArrayList<WebElement> itemList = new ArrayList<WebElement>(driver.findElements(allItemsBy));
+        double maxPrice = 0.0;
+        WebElement maxPriceElement = null;
+        for(WebElement item : itemList){
+            String priceText = item.findElement(priceBy).getText();
+            double price = Double.parseDouble(priceText.substring(1));
+            if (price > maxPrice){
+                maxPrice = price;
+                maxPriceElement = item;
+            }
+        }
+        return maxPriceElement;
+    }
+    public void clickOnMostExpensiveItem(){
+        findMostExpensiveItem().findElement(By.tagName("button")).click();
+    }
+
 }

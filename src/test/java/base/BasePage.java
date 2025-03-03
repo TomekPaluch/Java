@@ -9,8 +9,11 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public abstract class BasePage {
@@ -55,6 +58,14 @@ public abstract class BasePage {
     public String readTextFromElement(By element){
         waitUntilElementAppear(element);
         return driver.findElement(element).getText();
+    }
+    public WebElement returnItemWithBiggestPrice(By element, By itemPrice){
+        ArrayList<WebElement> itemList = new ArrayList<WebElement>(driver.findElements(element));
+        if(itemList.size() == 0){
+            System.out.println("No Items");
+        }
+
+        return null;
     }
     public void quitDriver() {
         driver.quit();
