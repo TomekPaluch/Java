@@ -21,7 +21,7 @@ public class MainPage extends BasePage{
     private final By priceBy = By.className("inventory_item_price");
     private final By itemNameBy = By.className("inventory_item_name");
     private final By allAddToCartButtonsBy = By.xpath("//button[contains(@id,'add-to-cart')]");
-
+    private final String button = "button";
     public String readTitle(){
         return readTextFromElement(titleLabelBy);
     }
@@ -32,47 +32,23 @@ public class MainPage extends BasePage{
         clickOnElement(logoutButtonBy) ;
     }
     public WebElement findMostExpensiveItem(){
-        ArrayList<WebElement> itemList = new ArrayList<WebElement>(driver.findElements(allItemsBy));
-        double maxPrice = 0.0;
-        WebElement maxPriceElement = null;
-        for(WebElement item : itemList){
-            String priceText = item.findElement(priceBy).getText();
-            double price = Double.parseDouble(priceText.substring(1));
-            if (price > maxPrice){
-                maxPrice = price;
-                maxPriceElement = item;
-            }
-        }
-        return maxPriceElement;
+      return returnItemWithBiggestPrice(allItemsBy, priceBy);
     }
     public void clickOnMostExpensiveItem(){
-        findMostExpensiveItem().findElement(By.tagName("button")).click();
+        findMostExpensiveItem().findElement(By.tagName(button)).click();
     }
 
     public WebElement findLeastExpensiveItem(){
-        ArrayList<WebElement> itemList = new ArrayList<>(driver.findElements(allItemsBy));
-        double minPrice = Double.MAX_VALUE;
-        WebElement minPriceElement = null;
-        for(WebElement item : itemList){
-            String priceText = item.findElement(priceBy).getText();
-            double price = Double.parseDouble(priceText.substring(1));
-            if (price < minPrice){
-                minPrice = price;
-                minPriceElement = item;
-            }
-        }
-        return minPriceElement;
+    return returnItemWithSmallestPrice(allItemsBy, priceBy);
     }
 
     public void clickOnLeastExpensiveItem() {
-        findLeastExpensiveItem().findElement(By.tagName("button")).click();
+        findLeastExpensiveItem().findElement(By.tagName(button)).click();
     }
 
     public void selectAllItems(){
-        ArrayList<WebElement> itemList = new ArrayList<>(driver.findElements(allItemsBy));
-        for(WebElement item: itemList){
-            item.findElement(By.tagName("button")).click();
-        }
+        returnAllItems(allItemsBy, button);
     }
+
 }
 

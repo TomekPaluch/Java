@@ -60,12 +60,39 @@ public abstract class BasePage {
         return driver.findElement(element).getText();
     }
     public WebElement returnItemWithBiggestPrice(By element, By itemPrice){
-        ArrayList<WebElement> itemList = new ArrayList<WebElement>(driver.findElements(element));
-        if(itemList.size() == 0){
-            System.out.println("No Items");
+        ArrayList<WebElement> itemList = new ArrayList<>(driver.findElements(element));
+        double maxPrice = 0.0;
+        WebElement maxPriceElement = null;
+        for(WebElement item : itemList){
+            String priceText = item.findElement(itemPrice).getText();
+            double price = Double.parseDouble(priceText.substring(1));
+            if (price > maxPrice){
+                maxPrice = price;
+                maxPriceElement = item;
+            }
         }
+        return maxPriceElement;
+    }
+    public WebElement returnItemWithSmallestPrice(By element, By itemPrice){
 
-        return null;
+        ArrayList<WebElement> itemList = new ArrayList<>(driver.findElements(element));
+        double minPrice = Double.MAX_VALUE;
+        WebElement minPriceElement = null;
+        for(WebElement item : itemList){
+            String priceText = item.findElement(itemPrice).getText();
+            double price = Double.parseDouble(priceText.substring(1));
+            if (price < minPrice){
+                minPrice = price;
+                minPriceElement = item;
+            }
+        }
+        return minPriceElement;
+    }
+    public void returnAllItems(By element, String button){
+        ArrayList<WebElement> itemList = new ArrayList<>(driver.findElements(element));
+        for(WebElement item: itemList){
+            item.findElement(By.tagName(button)).click();
+        }
     }
     public void quitDriver() {
         driver.quit();
