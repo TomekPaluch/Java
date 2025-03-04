@@ -9,7 +9,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BrowserSetup {
     public WebDriver driver;
-
+    public WebDriver startChromeGithub(){
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        driver = new ChromeDriver(options);
+        return driver;
+    }
     public WebDriver startChrome(){
         driver = new ChromeDriver(new ChromeOptions().addArguments("--start-maximized"));
         return driver;
