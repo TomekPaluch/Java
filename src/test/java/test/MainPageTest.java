@@ -28,6 +28,7 @@ public class MainPageTest {
         loginPage.validPassword();
         loginPage.clickOnLoginButton();
         assertEquals(mainPage.readTitle(), "Products");
+        loginPage.quitDriver();
     }
     @Test
     public void selectMostExpensiveItem(){
@@ -36,6 +37,7 @@ public class MainPageTest {
         loginPage.validPassword();
         loginPage.clickOnLoginButton();
         mainPage.clickOnMostExpensiveItem();
+        loginPage.quitDriver();
     }
     @Test
     public void selectLeastExpensiveItem(){
@@ -44,6 +46,7 @@ public class MainPageTest {
         loginPage.validPassword();
         loginPage.clickOnLoginButton();
         mainPage.clickOnLeastExpensiveItem();
+        loginPage.quitDriver();
     }
 
     @Test
@@ -53,6 +56,7 @@ public class MainPageTest {
         loginPage.validPassword();
         loginPage.clickOnLoginButton();
         mainPage.selectAllItems();
+        loginPage.quitDriver();
     }
 
 

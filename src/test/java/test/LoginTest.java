@@ -58,5 +58,6 @@ public class LoginTest extends BrowserSetup {
         loginPage.enterPage();
         loginPage.validLogin();
         loginPage.validPassword();
+        loginPage.quitDriver();
     }
 }
