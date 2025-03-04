@@ -45,3 +45,12 @@ jobs:
         run: |
           mvn test -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver \
                    -Dheadless=true
+
+      - name: Junit Surefire Report
+        run: mvn surefire-report:report-only
+
+      - name: Upload JUnit Surefire Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-surefire-report
+          path: target/site/surefire-report.html
