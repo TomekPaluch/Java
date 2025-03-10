@@ -1,5 +1,6 @@
 package base;
 
+import loadData.LoadData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -8,31 +9,30 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoginPage extends BasePage {
     private WebDriver driver;
     private WebElement element;
+    private LoadData loadData;
     private final String userNameXpath = "//*[@id=\"user-name\"]";
-    private String userNameText = "standard_user";
     private String passwordField = "//*[@id=\"password\"]";
-    private String passwordFieldText = "secret_sauce";
     private String loginButton = "//*[@id=\"login-button\"]";
-    private String invalidLogin = "Test";
-    private String invalidPassword = "12345";
     private String errorPopUp = "//*[@id=\"login_button_container\"]/div/form/div[3]/h3";
     private String errorMessage = "Epic sadface: Username and password do not match any user in this service";
     private String userNameRequired = "Epic sadface: Username is required";
     private String passwordRequired = "Epic sadface: Password is required";
+
     public LoginPage(WebDriver driver) {
         super(driver);
+        this.loadData = LoadData.getInstance();
     }
 
     public void enterPage() {
-        enterPage("https://www.saucedemo.com");
+        enterPage(loadData.getUrl());
     }
 
     public void validLogin() {
-        typeText(userNameXpath, userNameText);
+        typeText(userNameXpath, loadData.getValidUsername());
     }
 
     public void validPassword() {
-        typeText(passwordField, passwordFieldText);
+        typeText(passwordField, loadData.getValidPassword());
     }
 
     public void clickOnLoginButton() {
@@ -40,11 +40,11 @@ public class LoginPage extends BasePage {
     }
 
     public void invalidLogin() {
-        typeText(userNameXpath, invalidLogin);
+        typeText(userNameXpath, loadData.getInvalidUsername());
     }
 
     public void invalidPassword() {
-        typeText(passwordField, invalidPassword);
+        typeText(passwordField, loadData.getInvalidPassword());
     }
 
     public void verifyUserNameAndPasswordDoNotMatch() {
