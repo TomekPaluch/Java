@@ -6,7 +6,6 @@ import loadData.LoadData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class LoginTest extends BrowserSetup {
@@ -16,7 +15,7 @@ public class LoginTest extends BrowserSetup {
     @BeforeEach
     public void intizializeDriver() {
         BrowserSetup browserSetup = new BrowserSetup();
-        driver = browserSetup.startChrome();
+        driver = browserSetup.startChromeGithub();
         loginPage = new LoginPage(driver);
 
     }
