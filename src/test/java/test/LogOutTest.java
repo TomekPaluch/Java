@@ -12,21 +12,22 @@ public class LogOutTest extends BrowserSetup {
     private LoginPage loginPage;
     private MainPage mainPage;
 
-
     @BeforeEach
     public void startDriver() {
         BrowserSetup browserSetup = new BrowserSetup();
-        driver = browserSetup.startChromeGithub();
+        driver = browserSetup.startChrome();
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
     }
+
     @Test
-    public void logOut(){
+    public void logOut() {
         loginPage.enterPage();
         loginPage.validLogin();
         loginPage.validPassword();
         loginPage.clickOnLoginButton();
         mainPage.openDropDownMenu();
         mainPage.logOut();
+        mainPage.quitDriver();
     }
 }
