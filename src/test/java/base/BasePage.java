@@ -25,7 +25,7 @@ public abstract class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public WebElement waitUntilElementAppear(By element){
+    public WebElement waitUntilElementAppear(By element) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
@@ -42,7 +42,8 @@ public abstract class BasePage {
     public void clickOnElement(String xpath) {
         driver.findElement(By.xpath(xpath)).click();
     }
-    public void clickOnElement(By element){
+
+    public void clickOnElement(By element) {
         waitUntilElementAppear(element);
         driver.findElement(element).click();
     }
@@ -54,47 +55,51 @@ public abstract class BasePage {
     public void verifyErrorMessage(String xpath, String expectedMessage, String textDontAppear) {
         assertTrue(driver.findElement(By.xpath(xpath)).getText().contains(expectedMessage), textDontAppear);
     }
-    public String readTextFromElement(By element){
+
+    public String readTextFromElement(By element) {
         waitUntilElementAppear(element);
         return driver.findElement(element).getText();
     }
-    public WebElement returnItemWithBiggestPrice(By element, By itemPrice){
+
+    public WebElement returnItemWithBiggestPrice(By element, By itemPrice) {
         ArrayList<WebElement> itemList = new ArrayList<>(driver.findElements(element));
         double maxPrice = 0.0;
         WebElement maxPriceElement = null;
-        for(WebElement item : itemList){
+        for (WebElement item : itemList) {
             String priceText = item.findElement(itemPrice).getText();
             double price = Double.parseDouble(priceText.substring(1));
-            if (price > maxPrice){
+            if (price > maxPrice) {
                 maxPrice = price;
                 maxPriceElement = item;
             }
         }
         return maxPriceElement;
     }
-    public WebElement returnItemWithSmallestPrice(By element, By itemPrice){
+
+    public WebElement returnItemWithSmallestPrice(By element, By itemPrice) {
 
         ArrayList<WebElement> itemList = new ArrayList<>(driver.findElements(element));
         double minPrice = Double.MAX_VALUE;
         WebElement minPriceElement = null;
-        for(WebElement item : itemList){
+        for (WebElement item : itemList) {
             String priceText = item.findElement(itemPrice).getText();
             double price = Double.parseDouble(priceText.substring(1));
-            if (price < minPrice){
+            if (price < minPrice) {
                 minPrice = price;
                 minPriceElement = item;
             }
         }
         return minPriceElement;
     }
-    public void returnAllItems(By element, String button){
+
+    public void returnAllItems(By element, String button) {
         ArrayList<WebElement> itemList = new ArrayList<>(driver.findElements(element));
-        for(WebElement item: itemList){
+        for (WebElement item : itemList) {
             item.findElement(By.tagName(button)).click();
         }
     }
+
     public void quitDriver() {
         driver.quit();
     }
-
 }

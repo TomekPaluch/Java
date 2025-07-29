@@ -3,6 +3,7 @@ package test;
 import base.LoginPage;
 import commonUtilities.BrowserSetup;
 import loadData.LoadData;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -29,7 +30,6 @@ public class LoginTest extends BrowserSetup {
         loginPage.validLogin();
         loginPage.validPassword();
         loginPage.clickOnLoginButton();
-        loginPage.quitDriver();
     }
 
     @Test
@@ -39,7 +39,6 @@ public class LoginTest extends BrowserSetup {
         loginPage.invalidPassword();
         loginPage.clickOnLoginButton();
         loginPage.verifyUserNameAndPasswordDoNotMatch();
-        loginPage.quitDriver();
     }
 
     @Test
@@ -47,7 +46,6 @@ public class LoginTest extends BrowserSetup {
         loginPage.enterPage();
         loginPage.clickOnLoginButton();
         loginPage.verifyUserNameIsRequiredError();
-        loginPage.quitDriver();
     }
 
     @Test
@@ -56,7 +54,6 @@ public class LoginTest extends BrowserSetup {
         loginPage.validLogin();
         loginPage.clickOnLoginButton();
         loginPage.verifyPasswordNameIsRequiredError();
-        loginPage.quitDriver();
     }
 
     @Test
@@ -65,6 +62,12 @@ public class LoginTest extends BrowserSetup {
         loginPage.validLogin();
         loginPage.validPassword();
         loginPage.clickOnLoginButton();
-        loginPage.quitDriver();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

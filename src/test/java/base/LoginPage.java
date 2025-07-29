@@ -50,7 +50,7 @@ public class LoginPage extends BasePage {
         verifyErrorMessage(errorPopUp, userNameRequired, "UserName is required");
     }
 
-    public void verifyPasswordNameIsRequiredError(){
+    public void verifyPasswordNameIsRequiredError() {
         verifyErrorMessage(errorPopUp, passwordRequired, "Password is required");
     }
 

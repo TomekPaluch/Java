@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class MainPage extends BasePage{
+public class MainPage extends BasePage {
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -20,31 +20,36 @@ public class MainPage extends BasePage{
     private final By itemNameBy = By.className("inventory_item_name");
     private final By allAddToCartButtonsBy = By.xpath("//button[contains(@id,'add-to-cart')]");
     private final String button = "button";
-    public String readTitle(){
+
+    public String readTitle() {
         return readTextFromElement(titleLabelBy);
     }
-    public void openDropDownMenu(){
+
+    public void openDropDownMenu() {
         clickOnElement(burgerMenuBy);
     }
-    public void logOut(){
-        clickOnElement(logoutButtonBy) ;
+
+    public void logOut() {
+        clickOnElement(logoutButtonBy);
     }
-    public WebElement findMostExpensiveItem(){
-      return returnItemWithBiggestPrice(allItemsBy, priceBy);
+
+    public WebElement findMostExpensiveItem() {
+        return returnItemWithBiggestPrice(allItemsBy, priceBy);
     }
-    public void clickOnMostExpensiveItem(){
+
+    public void clickOnMostExpensiveItem() {
         findMostExpensiveItem().findElement(By.tagName(button)).click();
     }
 
-    public WebElement findLeastExpensiveItem(){
-    return returnItemWithSmallestPrice(allItemsBy, priceBy);
+    public WebElement findLeastExpensiveItem() {
+        return returnItemWithSmallestPrice(allItemsBy, priceBy);
     }
 
     public void clickOnLeastExpensiveItem() {
         findLeastExpensiveItem().findElement(By.tagName(button)).click();
     }
 
-    public void selectAllItems(){
+    public void selectAllItems() {
         returnAllItems(allItemsBy, button);
     }
 

@@ -3,6 +3,7 @@ package test;
 import base.LoginPage;
 import base.MainPage;
 import commonUtilities.BrowserSetup;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,12 @@ public class LogOutTest extends BrowserSetup {
         loginPage.clickOnLoginButton();
         mainPage.openDropDownMenu();
         mainPage.logOut();
-        mainPage.quitDriver();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
