@@ -16,8 +16,7 @@ public class MainPageTest {
 
     @BeforeEach
     public void intizializeDriver() {
-        BrowserSetup browserSetup = new BrowserSetup();
-        driver = browserSetup.startChromeGithub();
+        driver = new BrowserSetup().startBrowser("chrome");
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
     }

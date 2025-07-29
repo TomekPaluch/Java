@@ -2,13 +2,8 @@ package base;
 
 import loadData.LoadData;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginPage extends BasePage {
-    private WebDriver driver;
-    private WebElement element;
     private LoadData loadData;
     private final String userNameXpath = "//*[@id=\"user-name\"]";
     private String passwordField = "//*[@id=\"password\"]";

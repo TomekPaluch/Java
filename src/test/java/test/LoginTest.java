@@ -3,6 +3,7 @@ package test;
 import base.LoginPage;
 import commonUtilities.BrowserSetup;
 import loadData.LoadData;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -14,8 +15,7 @@ public class LoginTest extends BrowserSetup {
 
     @BeforeEach
     public void intizializeDriver() {
-        BrowserSetup browserSetup = new BrowserSetup();
-        driver = browserSetup.startChromeGithub();
+        driver = startBrowser("chrome");
         loginPage = new LoginPage(driver);
 
     }
@@ -61,6 +61,7 @@ public class LoginTest extends BrowserSetup {
         loginPage.enterPage();
         loginPage.validLogin();
         loginPage.validPassword();
+        loginPage.clickOnLoginButton();
         loginPage.quitDriver();
     }
 }

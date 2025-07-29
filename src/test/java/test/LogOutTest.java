@@ -15,8 +15,7 @@ public class LogOutTest extends BrowserSetup {
 
     @BeforeEach
     public void startDriver() {
-        BrowserSetup browserSetup = new BrowserSetup();
-        driver = browserSetup.startChromeGithub();
+        driver = startBrowser("chrome");
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
     }

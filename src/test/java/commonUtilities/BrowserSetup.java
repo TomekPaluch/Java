@@ -6,26 +6,35 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class BrowserSetup {
-    public WebDriver driver;
-    public WebDriver startChromeGithub(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        driver = new ChromeDriver(options);
-        return driver;
-    }
-    public WebDriver startChrome(){
-        driver = new ChromeDriver(new ChromeOptions().addArguments("--start-maximized"));
-        return driver;
-    }
-    public WebDriver startEdge(){
-        driver = new EdgeDriver(new EdgeOptions().addArguments("--start-maximized"));
-        return driver;
-    }
-    public WebDriver startFirefox(){
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
+    public WebDriver startBrowser(String browserName) {
+        WebDriver driver;
+        switch (browserName.toLowerCase()) {
+            case "chrome-headless":
+                ChromeOptions options = new ChromeOptions();
+                driver = new ChromeDriver(options);
+                break;
+            case "chrome":
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--start-maximized");
+                driver = new ChromeDriver(chromeOptions);
+                break;
+            case "edge":
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--start-maximized");
+                driver = new EdgeDriver(edgeOptions);
+                break;
+            case "firefox":
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--start-maximized");
+                driver = new FirefoxDriver(firefoxOptions);
+                break;
+
+            default:
+                throw new IllegalArgumentException("Unssupported browser" + browserName);
+        }
         return driver;
     }
 }

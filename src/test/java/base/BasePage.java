@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public abstract class BasePage {
     WebDriver driver;
-    WebElement element;
     Wait<WebDriver> wait;
 
     public BasePage(WebDriver driver) {
