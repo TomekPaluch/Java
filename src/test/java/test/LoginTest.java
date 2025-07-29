@@ -3,11 +3,9 @@ package test;
 import base.LoginPage;
 import commonUtilities.BrowserSetup;
 import loadData.LoadData;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-
 
 public class LoginTest extends BrowserSetup {
     private WebDriver driver;
@@ -19,10 +17,12 @@ public class LoginTest extends BrowserSetup {
         loginPage = new LoginPage(driver);
 
     }
+
     @Test
-    public void checkLoadData(){
+    public void checkLoadData() {
         LoadData.getInstance();
     }
+
     @Test
     public void loginWithValidCredentials() {
         loginPage.enterPage();
@@ -41,23 +41,26 @@ public class LoginTest extends BrowserSetup {
         loginPage.verifyUserNameAndPasswordDoNotMatch();
         loginPage.quitDriver();
     }
+
     @Test
-    public void userNameIsRequiredMessage(){
+    public void userNameIsRequiredMessage() {
         loginPage.enterPage();
         loginPage.clickOnLoginButton();
         loginPage.verifyUserNameIsRequiredError();
         loginPage.quitDriver();
     }
+
     @Test
-    public void passwordIsRequiredMessage(){
+    public void passwordIsRequiredMessage() {
         loginPage.enterPage();
         loginPage.validLogin();
         loginPage.clickOnLoginButton();
         loginPage.verifyPasswordNameIsRequiredError();
         loginPage.quitDriver();
     }
+
     @Test
-    public void logOut(){
+    public void logOut() {
         loginPage.enterPage();
         loginPage.validLogin();
         loginPage.validPassword();

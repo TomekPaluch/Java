@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class MainPageTest {
     private WebDriver driver;
     private LoginPage loginPage;
@@ -20,8 +21,9 @@ public class MainPageTest {
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
     }
+
     @Test
-    public void verifyUserLoggedIn(){
+    public void verifyUserLoggedIn() {
         loginPage.enterPage();
         loginPage.validLogin();
         loginPage.validPassword();
@@ -29,8 +31,9 @@ public class MainPageTest {
         assertEquals(mainPage.readTitle(), "Products");
         loginPage.quitDriver();
     }
+
     @Test
-    public void selectMostExpensiveItem(){
+    public void selectMostExpensiveItem() {
         loginPage.enterPage();
         loginPage.validLogin();
         loginPage.validPassword();
@@ -38,8 +41,9 @@ public class MainPageTest {
         mainPage.clickOnMostExpensiveItem();
         loginPage.quitDriver();
     }
+
     @Test
-    public void selectLeastExpensiveItem(){
+    public void selectLeastExpensiveItem() {
         loginPage.enterPage();
         loginPage.validLogin();
         loginPage.validPassword();
@@ -49,7 +53,7 @@ public class MainPageTest {
     }
 
     @Test
-    public void selectAllItems(){
+    public void selectAllItems() {
         loginPage.enterPage();
         loginPage.validLogin();
         loginPage.validPassword();
